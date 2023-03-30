@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import QuestionForm from "../component/QuestionForm"
-import { QuestionModal } from "../component/QuestionModal"
 import Questions from "../component/Questions"
 import { getQuestions } from "../services/firebase"
-import { setGlobalState, useGlobalState } from "../store"
+import {  useGlobalState } from "../store"
 
 const Page = () => {
     const [questions] = useGlobalState("questions")
@@ -12,11 +11,11 @@ const Page = () => {
     }, [])
 
     return (
-        <div class="flex flex-col items-center">
-            <QuestionForm />
-            <Questions questions={questions} />
-            <QuestionModal />
-
+        <div className="flex justify-center items-center w-screen h-screen">
+            <div className="flex border border-green-500 w-4/5 h-[60%]">
+                <QuestionForm />
+                <Questions questions={questions} />
+            </div>
         </div>
     )
 }

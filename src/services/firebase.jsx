@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore, addDoc, collection, getDocs} from "firebase/firestore"
+import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc,  updateDoc } from "firebase/firestore"
 import { setGlobalState } from "../store";
 
 const firebaseConfig = {
@@ -15,22 +15,22 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app)
 
-const createQuestion = async(params) => {
-  return  new Promise(async (resolve,reject) => {
-        const docRef = await addDoc(collection(db, "questions"),params)
-        if (docRef.id) {
-          await getQuestions()
-            resolve(docRef.id)
-        }
-        else{
-            reject()
-        }
-    })
+const createQuestion = async (params) => {
+  return new Promise(async (resolve, reject) => {
+    const docRef = await addDoc(collection(db, "questions"), params)
+    if (docRef.id) {
+      await getQuestions()
+      resolve(docRef.id)
+    }
+    else {
+      reject()
+    }
+  })
 }
 
 
 const getQuestions = async () => {
-  return new Promise(async (resolve,reject) => {
+  return new Promise(async (resolve, reject) => {
     const quarySnapshot = await getDocs(collection(db, "questions"))
     const data = []
     quarySnapshot.forEach((doc) => {
@@ -40,9 +40,32 @@ const getQuestions = async () => {
           ...doc.data()
         }
       )
-  })
-  setGlobalState("questions",data)
-  resolve(data)
+    })
+    setGlobalState("questions", data)
+    resolve(data)
   })
 }
-export {createQuestion, getQuestions}
+
+const deleteQuestion = async (id) => {
+  return new Promise(async (resolve, reject) => {
+    await deleteDoc(doc(db, "questions", id))
+      .then(async () => {
+        await getQuestions()
+        resolve()
+      })
+      .catch(() => reject)
+
+  })
+}
+const updateQuestion = async (id,params) => {
+  return new Promise(async (resolve, reject) => {
+    await updateDoc(doc(db, "questions", id), params)
+      .then(async () => {
+        await getQuestions()
+        resolve()
+      })
+      .catch(() => reject)
+  })
+}
+
+export { createQuestion, getQuestions, deleteQuestion, updateQuestion }
