@@ -6,7 +6,7 @@ import { setGlobalState, useGlobalState } from "../store";
 
 const UpdateQuestionModal = () => {
   const [question] = useGlobalState("question")
-  const [title, setTitle] = useState(question.title);
+  const [user, setUser] = useState(question.user);
   const [description, setDescription] = useState(question.description);
   const [editquestionModal] = useGlobalState("editquestionModal");
   
@@ -14,7 +14,7 @@ const UpdateQuestionModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const params = {
-      title,
+      user,
       description,
     }
 
@@ -44,12 +44,12 @@ const UpdateQuestionModal = () => {
       transform transition-transform duration-300 ${editquestionModal}`}
     >
       <div
-        className="bg-white  shadow-lg shadow-[#14ebff] rounded-xl
+        className="bg-white  shadow-lg shadow-pink-300 rounded-xl
         w-11/12 md:w-2/5 h-7/12 p-6"
       >
         <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
-            <p className="font-semibold ">Ask a question</p>
+            <p className="font-semibold ">Edit</p>
             <button
               onClick={() => setGlobalState("editquestionModal", "scale-0")}
               type="button"
@@ -61,23 +61,23 @@ const UpdateQuestionModal = () => {
 
           <div
             className="flex justify-between items-center
-          bg-white bg-opacity-70 shadow-sm shadow-[#14ebff] rounded-xl mt-5"
+          bg-white bg-opacity-70 shadow-sm shadow-pink-600 rounded-xl mt-5"
           >
             <input
               className="block w-full bg-transparent
               border-0 text-sm text-slate-500 focus:outline-none
               focus:ring-0"
               type="text"
-              name="title"
-              placeholder="Question title"
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
+              name="user"
+              placeholder="Username"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
             />
           </div>
 
           <div
             className="flex justify-between items-center
-          bg-white bg-opacity-70 shadow-sm shadow-[#14ebff] rounded-xl mt-5"
+          bg-white bg-opacity-70 shadow-sm shadow-pink-600 rounded-xl mt-5"
           >
             <textarea
               className="block w-full bg-transparent
@@ -95,9 +95,9 @@ const UpdateQuestionModal = () => {
             type="submit"
             className="flex flex-row justify-center items-center
               w-full text-white text-md py-2 px-5 rounded-full
-              drop-shadow-xl hover:bg-transparent hover:text-[#ffffff]
-              focus:outline-none focus:ring mt-5 bg-[#427f06] text-md font-bold
-              hover:bg-[#14ebff]"
+              drop-shadow-xl hover:text-[#ffffff]
+              focus:outline-none focus:ring mt-5 bg-pink-400 text-md font-bold
+              hover:bg-pink-600"
           >
             Submit Propose
           </button>

@@ -1,5 +1,4 @@
 import { ToastContainer } from "react-toastify";
-import { QuestionModal } from "./component/QuestionModal";
 import UpdateQuestionModal from "./component/UpdateQuestionModal";
 import { useGlobalState } from "./store";
 import Page from "./views/Page";
@@ -9,7 +8,6 @@ const App = () => {
   return (
     <div className="">
       <Page/>
-      <QuestionModal/>
       {
         question ? <UpdateQuestionModal/> : null
       }

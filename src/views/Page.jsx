@@ -12,7 +12,7 @@ const Page = () => {
 
     return (
         <div className="flex justify-center items-center w-screen h-screen">
-            <div className="flex border border-green-500 w-4/5 h-[60%]">
+            <div className="flex border border-pink-400 w-4/5 h-[60%]">
                 <QuestionForm />
                 <Questions questions={questions} />
             </div>
