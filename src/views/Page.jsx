@@ -11,8 +11,8 @@ const Page = () => {
     }, [])
 
     return (
-        <div className="flex flex-col justify-around items-center w-screen h-screen">
-            <div className="flex border border-pink-400 w-4/5 h-[60%]">
+        <div className="flex flex-col justify-around items-center w-screen md:h-screen">
+            <div className="md:flex border border-pink-400 md:w-4/5 md:h-[60%]">
                 <QuestionForm />
                 <Questions questions={questions} />
             </div>

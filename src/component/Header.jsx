@@ -28,7 +28,7 @@ const Header = () => {
   }
 
   return (
-    <div className="flex justify-between w-full px-10 py-5">
+    <div className="flex justify-between w-full px-10 py-5 fixed bg-white h-20">
       <Link to={"/"}>
         <h1 className="text-4xl">The Orignals </h1>
       </Link>
@@ -37,14 +37,14 @@ const Header = () => {
         {!currentUser ? ( 
           <Link
             to={"/signup"}
-            className="p-2 border-2 border-pink-400 rounded-lg"
+            className="p-2 border-2 border-pink-400 hover:border-pink-300 cursor-pointer rounded-lg"
           >
             Login
           </Link>
         ) : (
           <button 
           onClick={(handleLogOut)}
-          className="p-2 border-2 border-pink-400 rounded-lg">
+          className="p-2 border-2 border-pink-400 hover:border-pink-300 cursor-pointer rounded-lg">
             Logout
           </button>
         )}
